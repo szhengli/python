@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="86c69417-cf1f-4ee4-bfc7-3dfe5ac04681" name="Default" comment="Python learn">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Python_learn/concurrent.py" />
+    <list default="true" id="86c69417-cf1f-4ee4-bfc7-3dfe5ac04681" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Python_learn/Concurrent_join.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="untitled5.iws" />
@@ -18,7 +18,8 @@
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/untitled5$concurrent.coverage" NAME="concurrent Coverage Results" MODIFIED="1555573711580" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Python_learn" />
-    <SUITE FILE_PATH="coverage/untitled5$py_test.coverage" NAME="py_test Coverage Results" MODIFIED="1555565465754" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/polls" />
+    <SUITE FILE_PATH="coverage/untitled5$Concurrent_join.coverage" NAME="Concurrent_join Coverage Results" MODIFIED="1555580538913" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Python_learn" />
+    <SUITE FILE_PATH="coverage/untitled5$py_test.coverage" NAME="py_test Coverage Results" MODIFIED="1555580383601" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/polls" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -36,13 +37,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="concurrent.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Python_learn/concurrent.py">
+      <file leaf-file-name="Concurrent_join.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Python_learn/Concurrent_join.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.41633466">
-              <caret line="11" column="6" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
+            <state vertical-scroll-proportion="0.6434263">
+              <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
               <folding>
-                <element signature="e#0#11#0" expanded="true" />
+                <element signature="e#0#35#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -119,6 +120,7 @@
         <option value="$PROJECT_DIR$/polls/models.py" />
         <option value="$PROJECT_DIR$/polls/socket_client.py" />
         <option value="$PROJECT_DIR$/Python_learn/concurrent.py" />
+        <option value="$PROJECT_DIR$/Python_learn/Concurrent_join.py" />
       </list>
     </option>
   </component>
@@ -236,7 +238,7 @@
       <recent name="C:\Users\Administrator.BF-20180814LQUH\PycharmProjects\untitled5\polls\templates" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.concurrent">
+  <component name="RunManager" selected="Python.Concurrent_join">
     <configuration default="false" name="py_test" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -269,6 +271,24 @@
       <module name="untitled5" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Python_learn/concurrent.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Concurrent_join" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Python_learn" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="untitled5" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Python_learn/Concurrent_join.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -466,14 +486,16 @@
       <option name="USE_KEYWORD" value="false" />
       <method />
     </configuration>
-    <list size="2">
+    <list size="3">
       <item index="0" class="java.lang.String" itemvalue="Python.py_test" />
       <item index="1" class="java.lang.String" itemvalue="Python.concurrent" />
+      <item index="2" class="java.lang.String" itemvalue="Python.Concurrent_join" />
     </list>
     <recent_temporary>
-      <list size="2">
-        <item index="0" class="java.lang.String" itemvalue="Python.concurrent" />
+      <list size="3">
+        <item index="0" class="java.lang.String" itemvalue="Python.Concurrent_join" />
         <item index="1" class="java.lang.String" itemvalue="Python.py_test" />
+        <item index="2" class="java.lang.String" itemvalue="Python.concurrent" />
       </list>
     </recent_temporary>
   </component>
@@ -512,7 +534,13 @@
       <option name="project" value="LOCAL" />
       <updated>1555560272613</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Add Concurrent. Process test">
+      <created>1555573757245</created>
+      <option name="number" value="00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1555573757245</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -582,7 +610,8 @@
     <MESSAGE value="django code and socket test" />
     <MESSAGE value="change models" />
     <MESSAGE value="Python learn" />
-    <option name="LAST_COMMIT_MESSAGE" value="Python learn" />
+    <MESSAGE value="Add Concurrent. Process test" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add Concurrent. Process test" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -598,14 +627,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/polls/templates/polls/locked_user.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="40" column="8" selection-start-line="40" selection-start-column="8" selection-end-line="40" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/polls/templates/polls/frontends.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -965,10 +986,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Python_learn/concurrent.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.41633466">
-          <caret line="11" column="6" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
+        <state vertical-scroll-proportion="0.52988046">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Python_learn/Concurrent_join.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6434263">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
           </folding>
         </state>
       </provider>

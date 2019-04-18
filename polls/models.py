@@ -11,6 +11,8 @@ class Publiser(models.Model):
     class Meta:
         ordering = ["-name"]
 
+        # test
+
     def __str__(self):
         return self.name
 

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="4a3f8c10-f12c-428f-8aad-ea51500f9c66" name="192.168.10.40" url="http://192.168.10.40:8888">
+        <fileTransfer host="192.168.10.40" port="22" rootFolder="/root/django/mysite/" accessType="SFTP" password="dfc1dfc3dfc4dfcddfd9dfdfdfc4df9bdf98df99df9e" username="root">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

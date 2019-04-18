@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<p lang="en">
+<head>
+    <title>Title</title>
+    <style type="text/css">
+        form.big
+            {
+                width: 20%
+
+            }
+
+    </style>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="/static/polls/js/bootstrap.min.css">
+
+</head>
+
+
+<body>
+
+<left>
+
+
+<form  class="big" id="bkform" action="" method="post"  >
+ {% csrf_token %}
+    源服务器：
+    <select name="source">
+        <option value="192.168.10.132">Test132环境 </option>
+    </select>
+<br>
+        目标服务器：
+    <select name="target">
+         <option value="uat1.chinayie.com">UAT1环境 </option>
+
+    </select>
+    <br>
+        <br>
+    <br>
+    <div id="folders"  align="left">
+    <fieldset >
+         <legend> 后端同步模块选择  </legend>
+
+    <br>
+
+
+            {% for backend in backends %}
+
+            <input name="selected_backends" type="checkbox" value="{{ backend.folder }}" />  <strong> {{ backend.folder  }}      </strong>  <br>
+
+            {% endfor %}
+
+
+    </fieldset >
+         </div>
+    <br>
+    <br>
+
+<button type="submit" class="btn btn-success" value="Deploy">开始部署</button>
+
+
+</form>
+
+</left>
+
+ <script src="/static/polls/js/2.1.4/jquery.min.js"></script>
+<script src="/static/polls/js/popper.min.js"></script>
+<script src="/static/polls/js/bootstrap.min.js" ></script>
+
+
+<script>
+
+  $('#bkform').submit(function(event){
+
+      event.preventDefault();
+
+      $.post(
+              'deploy_backend/',
+              $(this).serialize(), function(response){
+                  $.ajax({
+                      type: "get",      //data 传送数据类型。post 传递
+                      url: "/polls/progress",  // yii 控制器/方法
+                      cache: false,
+                      success: function (response) {
+                      $('#details').html(response);
+                      }
+                    })
+
+              }
+      )
+  })
+
+
+
+
+</script>
+
+</body>
+
+
+</html>

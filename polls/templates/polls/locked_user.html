@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="/static/polls/js/bootstrap.min.css">
+</head>
+<body>
+
+<div id="users">
+
+    <form id  = "userform" name ="users" method="post">
+       锁定账号列表 <br>
+       {% csrf_token %}
+       {% for user in userlist %}
+
+       <input name="selected_user" type="checkbox" value="{{ user }}" />  <strong> {{ user  }}      </strong>  <br>
+
+       {% endfor %}
+
+       <br> <br>
+
+       <button type="submit" class="btn btn-success" id="unlock">解除锁定</button>
+
+   </form>
+
+</div>
+<br>
+
+<div id="test"> </div>
+
+<script src="/static/polls/js/2.1.4/jquery.min.js"></script>
+<script src="/static/polls/js/popper.min.js"></script>
+<script src="/static/polls/js/bootstrap.min.js" ></script>
+
+<script>
+
+  $('#userform').submit(function(event){
+
+      event.preventDefault();
+
+      $.post(
+              'unlock/',
+              $(this).serialize(), function(response){
+                  $.ajax({
+                      type: "get",      //data 传送数据类型。post 传递
+                      url: "/polls/locked_user",  // yii 控制器/方法
+                      cache: false,
+                      success: function (response) {
+                      $('#details').html(response);
+                      }
+                    })
+
+              }
+      )
+  })
+
+
+
+
+</script>
+
+
+</body>
+</html>

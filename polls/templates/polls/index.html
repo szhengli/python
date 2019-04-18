@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+<link rel="stylesheet" href="/static/polls/js/bootstrap.min.css">
+
+    <!-- Optional JavaScript -->
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+
+  <center>
+
+<br> <br>
+
+  <div class="container-fluid">
+  <div class="row">
+    <div class="col"> <center> <strong> 国烨运维管理系统 </strong> </center> <br><br></div>
+    <div class="w-100"></div>
+    <div class="col-1" style="background: #DDDDDD">
+
+        <button type="button" class="btn btn-info" id="bt_deploy_bk">后端部署</button> <br> <br>
+        <button type="button" class="btn btn-info" id="bt_deploy_ft">前端部署</button> <br> <br>
+        <button type="button" class="btn btn-info" id="jenkins">集成部署</button> <br>  <br>
+        <button type="button" class="btn btn-info" id="locked_user">账号解锁</button> <br>
+
+    </div>
+
+    <div class="col" id="details">col</div>
+
+    <!--<div class="col" id="details2">col</div>-->
+    <!--<div class="col" id="details3">col</div>-->
+      <div class="w-100"></div>
+    <div class="col" id="test"><center>3-1</center></div>
+
+  </div>
+</div>
+
+</center>
+
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="/static/polls/js/2.1.4/jquery.min.js"></script>
+<script src="/static/polls/js/popper.min.js"></script>
+<script src="/static/polls/js/bootstrap.min.js" ></script>
+
+
+
+
+
+
+
+  <script>
+        $('#bt_deploy_bk').click(function () {
+//            $.get("/polls/deploy_backend/", function (response) {
+//                $('#details').html(response);
+//            })
+            $.ajax({
+              type: "get",      //data 传送数据类型。post 传递
+              url: "/polls/deploy_backend/",  // yii 控制器/方法
+              cache: false,
+                success: function (response) {
+                $('#details').html(response);
+              }
+            })
+        });
+
+        $('#bt_deploy_ft').click(function () {
+//            $.get("/polls/deploy_frontend/", function (response) {
+//                $('#details').html(response);
+//            })
+            $.ajax({
+              type: "get",      //data 传送数据类型。post 传递
+              url: "/polls/deploy_frontend/",  // yii 控制器/方法
+              cache: false,
+                success: function (response) {
+                $('#details').html(response);
+              }
+            })
+        });
+
+        $('#jenkins').click(function () {
+//            $.get("/static/polls/test.txt", function (response) {
+//                $('#details').html(response);
+//            })
+            $.ajax({
+              type: "get",      //data 传送数据类型。post 传递
+              url: "/static/polls/test.txt",  // yii 控制器/方法
+              cache: false,
+                success: function (response) {
+                $('#details').html(response);
+              }
+            })
+        });
+
+              $('#locked_user').click(function () {
+//            $.get("/static/polls/test.txt", function (response) {
+//                $('#details').html(response);
+//            })
+            $.ajax({
+              type: "get",      //data 传送数据类型。post 传递
+              url: "/polls/locked_user",  // yii 控制器/方法
+              cache: false,
+                success: function (response) {
+                $('#details').html(response);
+              }
+            })
+        });
+
+</script>
+
+
+
+  </body>
+</html>

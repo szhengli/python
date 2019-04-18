@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<p lang="en">
+<head>
+    <title>Title</title>
+    <style type="text/css">
+        form.big
+            {
+                width: 20%
+
+            }
+
+    </style>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="/static/polls/js/bootstrap.min.css">
+
+</head>
+
+
+<body>
+
+
+
+
+<form  class="big"  method="post" id="frontForm" >
+ {% csrf_token %}
+    源服务器：
+    <select name="source">
+        <option value="192.168.10.132">Test132环境 </option>
+    </select>
+    <br>
+        目标服务器：
+    <select name="target">
+         <option value="uat1.chinayie.com">UAT1环境 </option>
+
+    </select>
+    <br>
+        <br>
+    <br>
+
+    <fieldset >
+         <legend> <center> 同步模块选择 </center> </legend>
+
+    <br>
+{% for front in frontends %}
+
+
+     <div id="folders"  align="left">
+
+    <input name="selected_frontends" type="checkbox" value="{{ front }}" />  <strong> {{ front  }}      </strong>  <br>
+{% endfor %}
+    </div>
+
+    <br>
+    <br>
+    </fieldset>
+
+ <center> <input type="submit" value="Deploy"> </center>
+
+</form>
+
+ </center>
+
+<script src="/static/polls/js/2.1.4/jquery.min.js"></script>
+<script src="/static/polls/js/popper.min.js"></script>
+<script src="/static/polls/js/bootstrap.min.js" ></script>
+
+
+<script>
+
+    $('#frontForm').submit(function(event) {
+
+                event.preventDefault();
+
+                $.post(
+                        'deploy_frontend/',
+                        $(this).serialize(), function (response) {
+                            $('#details').html(response);
+                        }
+                )
+            }
+      )
+
+
+
+
+    </script>
+
+</body>
+
+
+</html>

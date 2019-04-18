@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+{% block content %}
+
+  <h2>Publisher</h2>
+       <ul>
+           {% for publisher in pbs %}
+               <li> {{ publisher.name }} </li>
+           {% endfor %}
+       </ul>
+
+{% endblock %}
+
+</body>
+</html>

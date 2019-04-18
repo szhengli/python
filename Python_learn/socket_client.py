@@ -18,7 +18,7 @@ while True:
     length = header['length']
     data = b''
     data_len=0
-    while  data_len < length
+    while  data_len < length:
         data += s.recv(1024)
         data_len = len(data)
     response = data.decode('utf-8')

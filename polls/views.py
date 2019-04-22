@@ -26,7 +26,7 @@ front_state= "/root/django/mysite/polls/static/polls/deploy_pages.txt"
 
 from django.views.decorators.csrf import csrf_exempt
 
-redis = 'ssh uat1.chinayie.com \
+redis = 'ssh 47.100.20.200 \
          redis-cli  -a ChinayieREDIS135 \
          -h 511933ba9d7e4155.redis.rds.aliyuncs.com'
 

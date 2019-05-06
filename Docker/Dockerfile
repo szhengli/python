@@ -17,4 +17,3 @@ ENTRYPOINT ["run.sh"]
 EXPOSE 8080
 
 HEALTHCHECK CMD netstat -tnlp | grep 8080   || exit 1
-~

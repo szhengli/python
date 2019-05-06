@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: commonservice-deploy
+  labels:
+    app: commonservice
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: commonservice
+  template:
+    metadata:
+      labels:
+        app: commonservice
+    spec:
+      containers:
+      - name: commonservice
+        image: 8613915533122/common_service:v2
+        ports:
+        - containerPort: 8080
+~

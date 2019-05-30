@@ -22,21 +22,29 @@
 
 <body>
 
+
+<center>
+   后端更新
+    </center>
+   <br>
 <left>
 
 
 <form  class="big" id="bkform" action="" method="post"  >
  {% csrf_token %}
-    源服务器：
-    <select name="source">
-        <option value="192.168.10.132">Test132环境 </option>
-    </select>
-<br>
-        目标服务器：
-    <select name="target">
-         <option value="47.100.20.200">UAT1环境 </option>
+    同步方向
+    <select name="source_target">
+        <option value="192.168.10.132_uat1.chinayie.com"> Test132 -> UAT1 </option>
+        <option value="192.168.10.132_uat.chinayie.com"> Test132 -> UAT </option>
+        <option value="192.168.10.129_uat.chinayie.com"> Test129 -> UAT </option>
+        <option value="192.168.10.129_uat1.chinayie.com"> Test129 -> UAT1 </option>
+        <option value="break_line"> ****************** </option>
+        <option value="uat.chinayie.com_www.chinayie.com"> UAT -> 生产 </option>
+        <option value="uat1.chinayie.com_www.chinayie.com"> UAT1 -> 生产 </option>
 
     </select>
+<br>
+
     <br>
         <br>
     <br>

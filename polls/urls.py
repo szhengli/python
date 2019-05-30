@@ -17,6 +17,8 @@ urlpatterns = [ path('', views.index, name='index') ,
                 path('deploy_frontend/', views.deploy_frontend, name='deploy_frontend'),
                 path('locked_user/' , views.locked_user , name='locked_user'),
                 path('unlock/' , views.unlock , name='unlock'),
+                path('deploy_logs/' , views.deploy_logs, name='deploy_logs'),
+                path('logouts/', views.logouts, name='logouts'),
                 ]
 
 

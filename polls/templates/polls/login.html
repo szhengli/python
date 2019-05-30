@@ -21,8 +21,10 @@
     </div>
     <div class="fieldWrapper" >
         {{ form.password.errors }}
+
         <label for="{{ form.password.id_for_label }}" > Password: </label>
-        {{ form.password }}
+
+        <input type="password" name="password" required="" id="password">
     </div>
 
     <input type="submit" value="Login">

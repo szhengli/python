@@ -38,6 +38,15 @@ class Backends(models.Model):
 class FrontEnds(models.Model):
     folder = models.CharField(max_length=100)
 
+class Deploy_Records(models.Model):
+    timestamp = models.DateTimeField(auto_now=True)
+    type = models.CharField(max_length=100)
+    operator = models.CharField(max_length=100)
+    source = models.CharField(max_length=100,default="")
+    target = models.CharField(max_length=100,default="")
+    items = models.CharField(max_length=100)
+
+
 
 
 

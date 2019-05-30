@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form  class="big"  method="post" id="LogsForm" >
+ {% csrf_token %}
+    部署方向<select name="env">
+        <option value="uat1.chinayie.com"> UAT1 环境 </option>
+        <option value="uat.chinayie.com">  UAT 环境 </option>
+        <option value="www.chinayie.com"> 生产环境 </option>
+
+    </select>
+
+
+ <center> <input type="submit" value="Search"> </center>
+
+</form>
+
+
+
+<script>
+
+    $('#LogsForm').submit(function(event) {
+
+                event.preventDefault();
+
+                $.post(
+                        'deploy_logs/',
+                        $(this).serialize(), function (response) {
+                            $('#details').html(response);
+                        }
+                )
+            }
+      )
+
+
+
+
+    </script>
+
+
+
+
+</body>
+</html>

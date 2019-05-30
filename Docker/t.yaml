@@ -1,0 +1,19 @@
+version: "3.7"
+services:
+  nginx:
+    image: nginx
+    networks:
+    - lan1
+    volumes:
+    - type: volume
+      source: data
+      target: /app
+volumes:
+  data:
+    driver_opts:
+      type: "nfs"
+      device: ":/data"
+      o: "addr=192.168.10.13,rw"
+
+networks:
+  lan1:

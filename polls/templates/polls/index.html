@@ -20,13 +20,19 @@
 
   <div class="container-fluid">
   <div class="row">
-    <div class="col"> <center> <strong> 国烨运维管理系统 </strong> </center> <br><br></div>
+    <div class="col"> <center> <strong> 国烨运维管理系统 </strong> </center>
+
+        {% load static %}
+
+        <a  href="/polls/logouts"> <img id="logout" src="{% static 'polls/images/logout.gif' %}"  align="right" title="Log out!"   alt="Logouts" /> </a>
+
+    </div>
     <div class="w-100"></div>
     <div class="col-1" style="background: #DDDDDD">
 
         <button type="button" class="btn btn-info" id="bt_deploy_bk">后端部署</button> <br> <br>
         <button type="button" class="btn btn-info" id="bt_deploy_ft">前端部署</button> <br> <br>
-        <button type="button" class="btn btn-info" id="jenkins">集成部署</button> <br>  <br>
+        <button type="button" class="btn btn-info" id="deploy_logs">部署日志</button> <br>  <br>
         <button type="button" class="btn btn-info" id="locked_user">账号解锁</button> <br>
 
     </div>
@@ -83,13 +89,13 @@
             })
         });
 
-        $('#jenkins').click(function () {
+        $('#deploy_logs').click(function () {
 //            $.get("/static/polls/test.txt", function (response) {
 //                $('#details').html(response);
 //            })
             $.ajax({
               type: "get",      //data 传送数据类型。post 传递
-              url: "/static/polls/test.txt",  // yii 控制器/方法
+              url: "/polls/deploy_logs",  // yii 控制器/方法
               cache: false,
                 success: function (response) {
                 $('#details').html(response);

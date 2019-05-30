@@ -2,13 +2,13 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.http  import HttpResponse, Http404,HttpResponseRedirect
-from .models import Question, Choice, Publiser, Book, Backends,FrontEnds
+from .models import Question, Choice, Publiser, Book, Backends,FrontEnds,Deploy_Records
 import django.http
 
 from django.template import loader
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
 from django.conf import settings
@@ -19,6 +19,7 @@ from multiprocessing import Pool, Process
 from django.views import View
 from django.views.generic import ListView, DetailView
 from subprocess import run, getoutput
+from django.views.decorators.cache  import never_cache
 
 prog_txt = "/root/django/mysite/polls/static/polls/ajax_info.txt"
 
@@ -70,10 +71,11 @@ def test_js(request):
         password = request.POST['password']
         return HttpResponse(username+"  "+password )
 
-
+@never_cache
 def deploy_backend(request):
     if request.user.is_authenticated:
         jars = Backends.objects.all()
+        operator = request.user.username
         backends = []
         run(">  " + prog_txt , shell=True)
         for jar in jars:
@@ -82,14 +84,18 @@ def deploy_backend(request):
             return render(request,'polls/backend.html', {'backends':backends})
         elif request.method == 'POST':
             selected = request.POST.getlist('selected_backends')
-            source=request.POST['source']
-            target=request.POST['target']
+
+            source_target=request.POST['source_target']
+            source, target = source_target.split("_")
 
             if selected :
+                items = "  ".join(selected)
                 para_list = [[source, target, mold] for mold in selected  ]
                 for para in para_list:
                     run("echo " + para[2] + " >> " + prog_txt , shell=True)
                     Process(target=deploy_jar, args=para).start()
+
+                Deploy_Records(items=items,operator=operator,type="Backend",source=source, target=target).save()
             return HttpResponseRedirect(reverse('polls:progress'))
     else:
 
@@ -103,10 +109,12 @@ def deploy_pages(source,target,pages):
     run(command, shell=True)
     run("echo 1 > " + front_state, shell=True)
 
+@never_cache
 def deploy_frontend(request):
     if request.user.is_authenticated:
         fronts = FrontEnds.objects.all()
         frontends = []
+        operator = request.user.username
 
         for front in fronts:
             frontends.append(front.folder)
@@ -115,19 +123,48 @@ def deploy_frontend(request):
 
         elif request.method == 'POST':
             selected = request.POST.getlist('selected_frontends')
-            source=request.POST['source']
-            target=request.POST['target']
+            source_target=request.POST['source_target']
+            source, target = source_target.split("_")
             pages = ' '.join(selected)
 
             if selected :
                 para=(source,target,pages)
                 Process(target=deploy_pages, args=para).start()
+                Deploy_Records(items=pages,operator=operator,type="Frontend",source=source, target=target).save()
+
                 return HttpResponseRedirect(reverse('polls:progress_front'))
     else:
 
         request.session['previous'] = request.path
         return HttpResponseRedirect(reverse('polls:login'))
-        #return HttpResponse(request.session['previous'])
+
+
+
+
+
+
+def deploy_logs(request):
+    if request.user.is_authenticated:
+        operator = request.user.username
+        if request.method == 'GET':
+            return render(request, 'polls/deploy_logs.html')
+
+        elif request.method == 'POST':
+            env=request.POST['env']
+            if env:
+                records = Deploy_Records.objects.filter(target__contains=env)
+                return render(request,'polls/search_result.html', {'records':records})
+    else:
+        request.session['previous'] = request.path
+        return render(request, 'polls/deploy_logs.html')
+
+
+
+
+def logouts(request):
+    if request.user.is_authenticated:
+        logout(request)
+        return HttpResponseRedirect(reverse('polls:login'))
 
 
 def progress_front(request):

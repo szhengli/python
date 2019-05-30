@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+       <link rel="stylesheet" href="/static/polls/js/bootstrap.min.css">
+    <script>
+    </script>
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+    <div id="logs"  align="left">
+    <fieldset >
+         <legend> 部署日志  </legend>
+
+    <br>
+
+<table border="1" class="table table-striped table-hover table-bordered">
+
+  <tr>
+    <th> 部署时间 </th>
+    <th> 部署人 </th>
+      <th> 类型 </th>
+      <th> 部署项目</th>
+    <th> 源 </th>
+      <th> 目的 </th>
+          {% for record in records %}
+                <tr>
+                     <td>{{ record.timestamp }}</td>
+                     <td>{{ record.operator}}</td>
+                     <td>{{ record.type}}</td>
+                     <td>{{ record.items}}</td>
+                      <td>{{ record.source}}</td>
+                     <td>{{ record.target}}</td>
+                </tr>
+        {% endfor %}
+
+</table>
+
+
+
+
+
+    </fieldset >
+         </div>
+
+
+
+
+<script src="/static/polls/js/2.1.4/jquery.min.js"></script>
+<script src="/static/polls/js/popper.min.js"></script>
+<script src="/static/polls/js/bootstrap.min.js" ></script>
+</body>
+</html>

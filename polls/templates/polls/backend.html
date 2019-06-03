@@ -8,7 +8,9 @@
                 width: 20%
 
             }
-
+    td div {
+             width:200px;
+    }
     </style>
 
     <meta charset="utf-8">
@@ -22,12 +24,13 @@
 
 <body>
 
+ <div align="center">
 
-<center>
+
    后端更新
-    </center>
+
    <br>
-<left>
+
 
 
 <form  class="big" id="bkform" action="" method="post"  >
@@ -43,36 +46,46 @@
         <option value="uat1.chinayie.com_www.chinayie.com"> UAT1 -> 生产 </option>
 
     </select>
-<br>
 
     <br>
-        <br>
-    <br>
+
     <div id="folders"  align="left">
     <fieldset >
-         <legend> 后端同步模块选择  </legend>
 
     <br>
 
 
+        <table border="1" class="table table-striped table-hover table-bordered">
+               <tr>
             {% for backend in backends %}
 
-            <input name="selected_backends" type="checkbox" value="{{ backend.folder }}" />  <strong> {{ backend.folder  }}      </strong>  <br>
 
-            {% endfor %}
+                    {% if forloop.counter0|divisibleby:"2"  %}
+                             </tr><tr>
+                             <td>
+                             <div class="form-check">  <input class="form-check-input" name="selected_backends" id="{{ backend.folder }}" type="checkbox" value="{{ backend.folder }}" />
+                              <label class="form-check-label" for="{{ backend.folder }}">  <strong> {{ backend.folder  }} </strong>
+                              </label> </div>
+                        </td>
+                     {% else %}
+                             <td>
+                             <div class="form-check">  <input class="form-check-input" name="selected_backends" id="{{ backend.folder }}" type="checkbox" value="{{ backend.folder }}" />
+                              <label class="form-check-label" for="{{ backend.folder }}"> <strong> {{ backend.folder  }}  </strong>
+                              </label> </div>
+                             </td>
+                      {% endif %}
 
+        {% endfor %}
 
+    </table>
     </fieldset >
          </div>
-    <br>
-    <br>
 
-<button type="submit" class="btn btn-success" value="Deploy">开始部署</button>
-
+    <button type="submit" class="btn btn-success" value="Deploy">开始部署</button>
 
 </form>
 
-</left>
+ </div>
 
  <script src="/static/polls/js/2.1.4/jquery.min.js"></script>
 <script src="/static/polls/js/popper.min.js"></script>

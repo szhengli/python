@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<p lang="en">
+<p lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <title>Title</title>
     <style type="text/css">
@@ -8,7 +8,9 @@
                 width: 20%
 
             }
-
+    td div {
+             width:150px;
+    }
     </style>
 
     <meta charset="utf-8">
@@ -21,15 +23,17 @@
 
 
 <body>
-<center>
-   前端更新
-    </center>
+
+  <div align="center"> 前端更新
+
    <br>
 
 
 <form  class="big"  method="post" id="frontForm" >
  {% csrf_token %}
+
     同步方向
+
       <select name="source_target">
         <option value="192.168.10.132_uat1.chinayie.com"> Test132 -> UAT1 </option>
         <option value="192.168.10.132_uat.chinayie.com"> Test132 -> UAT </option>
@@ -38,34 +42,37 @@
         <option value="break_line"> ****************** </option>
         <option value="uat.chinayie.com_www.chinayie.com"> UAT -> 生产 </option>
         <option value="uat1.chinayie.com_www.chinayie.com"> UAT1 -> 生产 </option>
-
     </select>
-    <br>
-        <br>
-    <br>
+    <br><br>
+         <div id="folders" >
 
-    <fieldset >
-         <legend> <center> 同步模块选择 </center> </legend>
-
-    <br>
-{% for front in frontends %}
-
-
-     <div id="folders"  align="left">
-
-    <input name="selected_frontends" type="checkbox" value="{{ front }}" />  <strong> {{ front  }}      </strong>  <br>
-{% endfor %}
+        <table border="1" class="table table-striped table-hover table-bordered">
+                <tr>
+           {% for front in frontends %}
+                    {% if forloop.counter0|divisibleby:"2"  %}
+                        </tr><tr>
+                        <td >
+                          <div class="form-check">    <input name="selected_frontends"  type="checkbox" value="{{ front }}" id="{{ front }}" />
+                             <label class="form-check-label" for="{{ front }}">   <strong> {{ front  }}      </strong>
+                          </label></div>
+                        </td>
+                    {% else %}
+                        <td >
+                          <div class="form-check">     <input name="selected_frontends"   type="checkbox" value="{{ front }}" id="{{ front }}" />
+                              <label class="form-check-label" for="{{ front }}">   <strong> {{ front  }}      </strong>
+                          </label></div>
+                        </td>
+                     {% endif %}
+            {% endfor %}
+        </table>
     </div>
-
-    <br>
-    <br>
-    </fieldset>
-
- <center> <input type="submit" value="Deploy"> </center>
+    <button type="submit" class="btn btn-success" value="Deploy" >开始部署</button>
 
 </form>
 
- </center>
+
+
+ </div>
 
 <script src="/static/polls/js/2.1.4/jquery.min.js"></script>
 <script src="/static/polls/js/popper.min.js"></script>

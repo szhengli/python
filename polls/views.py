@@ -35,6 +35,23 @@ redis = 'ssh 47.100.20.200 \
 shiro = 'shiro:rediscache:tradeLoginRetryLimitCache:'
 
 
+def  cmd(host):
+    if host == 'www.chinayie.com':
+        command = 'ssh uat1.chinayie.com ssh www.chinayie.com '  + ' get_file.sh '
+    else:
+        command = 'ssh ' +  host  + ' get_file.sh '
+    return command
+
+
+def check_backend(backends, source, target):
+    errors = []
+    for folder in backends:
+        prefix = Backends.objects.filter(folder=folder)[0].prefix
+        source_file = getoutput(cmd(source) + folder + '  ' +  prefix)
+        target_file = getoutput(cmd(target) + folder + '  ' +  prefix)
+        if source_file != target_file:
+            errors.add(folder)
+    return errors
 
 
 
@@ -84,21 +101,18 @@ def deploy_backend(request):
             return render(request,'polls/backend.html', {'backends':backends})
         elif request.method == 'POST':
             selected = request.POST.getlist('selected_backends')
-
             source_target=request.POST['source_target']
             source, target = source_target.split("_")
-
             if selected :
                 items = "  ".join(selected)
                 para_list = [[source, target, mold] for mold in selected  ]
                 for para in para_list:
                     run("echo " + para[2] + " >> " + prog_txt , shell=True)
-                    Process(target=deploy_jar, args=para).start()
 
+                    Process(target=deploy_jar, args=para).start()
                 Deploy_Records(items=items,operator=operator,type="Backend",source=source, target=target).save()
             return HttpResponseRedirect(reverse('polls:progress'))
     else:
-
         request.session['previous'] = request.path
         return HttpResponseRedirect(reverse('polls:login'))
         #return HttpResponse(request.session['previous'])
@@ -164,7 +178,7 @@ def deploy_logs(request):
 def logouts(request):
     if request.user.is_authenticated:
         logout(request)
-        return HttpResponseRedirect(reverse('polls:login'))
+        return HttpResponseRedirect(reverse('polls:index'))
 
 
 def progress_front(request):

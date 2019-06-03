@@ -18,7 +18,8 @@ function loadXMLDoc()
         {   resp=xmlhttp.responseText;
             document.getElementById("myDiv").innerHTML=resp;
             if (resp == "") {
-               var tSrc=document.getElementById("state").getAttribute("tSrc");
+
+                var tSrc=document.getElementById("state").getAttribute("tSrc");
                 var src=document.getElementById("state").getAttribute("src");
                 document.getElementById("state").src=tSrc ;
                 document.getElementById("state").tSrc=src ;

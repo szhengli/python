@@ -4,6 +4,16 @@
     <meta charset="UTF-8">
     <title>Title</title>
 
+    <style>
+                form.big
+            {
+                width: 20%
+
+            }
+            td div {
+             width:200px;
+    }
+    </style>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -14,18 +24,37 @@
 
 <div id="users">
 
-    <form id  = "userform" name ="users" method="post">
-       锁定账号列表 <br>
+    <form id  = "userform" class="big" name ="users" method="post">
+       锁定账号列表
+        <br><br>
        {% csrf_token %}
+        <div >
+                <table border="1" class="table table-striped table-hover table-bordered">
+         <tr>
        {% for user in userlist %}
-
-       <input name="selected_user" type="checkbox" value="{{ user }}" />  <strong> {{ user  }}      </strong>  <br>
-
+                    {% if forloop.counter0|divisibleby:"2"  %}
+                             </tr><tr>
+                             <td>
+                             <div class="form-check">
+                                 <input name="selected_user" type="checkbox"  id="{{ user }}" value="{{ user }}" />
+                              <label class="form-check-label" for="{{ user }}">  <strong> {{ user  }} </strong>
+                              </label> </div>
+                        </td>
+                     {% else %}
+                             <td>
+                                 <div class="form-check">
+                                 <input name="selected_user" type="checkbox"  id="{{ user }}" value="{{ user }}" />
+                                  <label class="form-check-label" for="{{ user }}">  <strong> {{ user   }} </strong>
+                                </label>
+                                 </div>
+                             </td>
+                      {% endif %}
        {% endfor %}
+        </table>
+            </div>
+       <br>
 
-       <br> <br>
-
-       <button type="submit" class="btn btn-success" id="unlock">解除锁定</button>
+       <button type="submit" class="btn btn-success" id="unlock" style="align-content: center">解除锁定</button>
 
    </form>
 

@@ -9,9 +9,14 @@
     padding: 25px;
     margin:0px auto;
     }
+
+
+
     </style>
     <meta charset="UTF-8">
     <title>国烨运维管理系统</title>
+    <link rel="stylesheet" href="/static/polls/js/bootstrap.min.css">
+
 </head>
 {% load static %}
 <body   background="{% static 'polls/images/login_bg.jpg' %}"
@@ -20,8 +25,8 @@
         background-attachment: fixed;" >
 <br>
 <br>
-<div id="login">
-    <center>国烨运维管理系统</center>
+<div id="login" style="width:400px;filter:alpha(opacity=70);opacity:0.7;">
+    <center><h1> <font size="6">国烨运维管理系统</font></h1></center>
 
     <br>
 
@@ -32,25 +37,27 @@
 
 
        <div class="fieldWrapper"  >
-           {{ form.username.errors }}
-            <label for="{{ form.username.id_for_label }}" > Username: </label>
-            {{ form.username }}
-           </div>
-       <div class="fieldWrapper" >
-           {{ form.password.errors }}
+
+
+
+          Username: <input type="text" class="form-control" name="username" required="" id="username">
+
+
 
            <br>
 
-           <label for="{{ form.password.id_for_label }}" > Password: </label>
+       Password: <input type="password" class="form-control" name="password" required="" id="password">
 
-           <input type="password" name="password" required="" id="password">
-        </div>
         <br>
-      <center> <input type="submit" value="Login"> </center>
+      <center> <input type="submit" value="Login" class="btn btn-outline-success my-2 my-sm-0" > </center>
 
       </form>
 
    </div>
+
+<script src="/static/polls/js/2.1.4/jquery.min.js"></script>
+<script src="/static/polls/js/popper.min.js"></script>
+<script src="/static/polls/js/bootstrap.min.js" ></script>
 
 </body>
 </html>

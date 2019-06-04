@@ -9,30 +9,30 @@
     <script>
 
 
-function loadXMLDoc()
-{
-    xmlhttp= new XMLHttpRequest()
-    xmlhttp.onreadystatechange=function()
-    {
-        if (xmlhttp.readyState==4 && xmlhttp.status==200)
-        {   resp=xmlhttp.responseText;
-            document.getElementById("myDiv").innerHTML= resp;
+function loadXMLDoc() {
+    xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            resp = xmlhttp.responseText;
+            document.getElementById("myDiv").innerHTML = resp;
             if (resp == 1) {
-               var tSrc=document.getElementById("state").getAttribute("tSrc");
-                var src=document.getElementById("state").getAttribute("src");
-                document.getElementById("state").src=tSrc ;
-                document.getElementById("state").tSrc=src ;
-                document.getElementById("myDiv").innerHTML="<h1>部署完毕!<h1>";
+                var tSrc = document.getElementById("state").getAttribute("tSrc");
+                var src = document.getElementById("state").getAttribute("src");
+                document.getElementById("state").src = tSrc;
+                document.getElementById("state").tSrc = src;
+                document.getElementById("myDiv").innerHTML = "<h1>部署完毕!<h1>";
+                clearInterval(flags);
+                  }
             }
-        }
 
-    }
+         };
 
     xmlhttp.open("GET", "/static/polls/deploy_pages.txt", true);
     xmlhttp.send();
-}
+    }
 
-        window.setInterval(loadXMLDoc, 3000)
+    flags = window.setInterval(loadXMLDoc, 3000);
+
 
     </script>
 

@@ -11,7 +11,7 @@
 
 function loadXMLDoc()
 {
-    xmlhttp= new XMLHttpRequest()
+    xmlhttp= new XMLHttpRequest();
     xmlhttp.onreadystatechange=function()
     {
         if (xmlhttp.readyState==4 && xmlhttp.status==200)
@@ -24,15 +24,16 @@ function loadXMLDoc()
                 document.getElementById("state").src=tSrc ;
                 document.getElementById("state").tSrc=src ;
                 document.getElementById("myDiv").innerHTML="<h1>部署完毕!<h1>";
+                clearInterval(flags)
             }
         }
 
-    }
+    };
 
     xmlhttp.open("GET", "/static/polls/ajax_info.txt", true);
     xmlhttp.send();
 }
-        window.setInterval(loadXMLDoc, 3000)
+        flags=window.setInterval(loadXMLDoc, 3000);
 
     </script>
 

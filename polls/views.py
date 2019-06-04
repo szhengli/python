@@ -156,7 +156,7 @@ def deploy_frontend(request):
 
 
 
-
+@never_cache
 def deploy_logs(request):
     if request.user.is_authenticated:
         operator = request.user.username
@@ -180,7 +180,7 @@ def logouts(request):
         logout(request)
         return HttpResponseRedirect(reverse('polls:index'))
 
-
+@never_cache
 def progress_front(request):
     return render(request, 'polls/progress_front.html')
 
@@ -266,7 +266,7 @@ class Tests(View):
         return HttpResponse(self.greeting)
 
 
-
+@never_cache
 def progress(request):
 
     return render(request, 'polls/progress.html')

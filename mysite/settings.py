@@ -25,7 +25,7 @@ SECRET_KEY = '(j1-hkdwo0&f4i&#3-oy9pm(e%(28_r+_(-0dsodl2lo3(y_^d'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.10.40']
+ALLOWED_HOSTS = ['192.168.10.40','cd.chinayie.com','ops.chinayie.net','ops.chinayie.com']
 
 
 # Application definition

@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.http  import HttpResponse, Http404,HttpResponseRedirect
 from .models import Question, Choice, Publiser, Book, Backends,FrontEnds,Deploy_Records
 import django.http
+from redis import Redis
 
 from django.template import loader
 from django.shortcuts import render, get_object_or_404
@@ -35,6 +36,8 @@ redis = 'ssh 47.100.20.200 \
 shiro = 'shiro:rediscache:tradeLoginRetryLimitCache:'
 
 
+redis_check = Redis(host='localhost', port=6379, decode_responses=True)
+
 def  cmd(host):
     if host == 'www.chinayie.com':
         command = 'ssh uat1.chinayie.com ssh www.chinayie.com '  + ' get_file.sh '
@@ -63,7 +66,6 @@ class PubliserList(ListView):
 
 class PublisherDetail(DetailView):
     model = Publiser
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['book_list'] = Book.objects.all()
@@ -89,6 +91,11 @@ def test_js(request):
         return HttpResponse(username+"  "+password )
 
 @never_cache
+def check_prog(request):
+    operator = request.user.username
+
+
+@never_cache
 def deploy_backend(request):
     if request.user.is_authenticated:
         jars = Backends.objects.all()
@@ -108,7 +115,6 @@ def deploy_backend(request):
                 para_list = [[source, target, mold] for mold in selected  ]
                 for para in para_list:
                     run("echo " + para[2] + " >> " + prog_txt , shell=True)
-
                     Process(target=deploy_jar, args=para).start()
                 Deploy_Records(items=items,operator=operator,type="Backend",source=source, target=target).save()
             return HttpResponseRedirect(reverse('polls:progress'))
@@ -140,15 +146,12 @@ def deploy_frontend(request):
             source_target=request.POST['source_target']
             source, target = source_target.split("_")
             pages = ' '.join(selected)
-
             if selected :
                 para=(source,target,pages)
                 Process(target=deploy_pages, args=para).start()
                 Deploy_Records(items=pages,operator=operator,type="Frontend",source=source, target=target).save()
-
                 return HttpResponseRedirect(reverse('polls:progress_front'))
     else:
-
         request.session['previous'] = request.path
         return HttpResponseRedirect(reverse('polls:login'))
 
@@ -162,7 +165,6 @@ def deploy_logs(request):
         operator = request.user.username
         if request.method == 'GET':
             return render(request, 'polls/deploy_logs.html')
-
         elif request.method == 'POST':
             env=request.POST['env']
             if env:
@@ -276,7 +278,6 @@ def progress(request):
 
 def index(request):
     if request.user.is_authenticated:
-
         return render(request, 'polls/index.html')
     else:
         request.session['previous'] = request.path

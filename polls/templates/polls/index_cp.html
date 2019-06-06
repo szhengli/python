@@ -11,84 +11,46 @@
     <!-- Optional JavaScript -->
 
     <title>国烨运维管理系统</title>
-          <style type="text/css">
-        form.big
-            {
-                width: 30%
-            }
-    td div {
-             width:150px;
-    }
-    </style>
   </head>
   <body>
 
+  <center>
 
-  <div class="container-fluid" >
+<br> <br>
+
+  <div class="container-fluid">
   <div class="row">
+    <div class="col"> <center> <strong> 国烨运维管理系统 </strong> </center>
 
-        <nav class="navbar navbar-expand-lg navbar-dark  bg-dark" style="width: 100% ">
-    <div align="center">
+        {% load static %}
 
-    <a class="navbar-brand  btn-outline-danger"  href="#" id="bt_deploy_bk">后端</a>
-    <a class="navbar-brand  btn-outline-primary" href="#" id="bt_deploy_ft" >前端</a>
-    <a class="navbar-brand  btn-outline-success" href="#" id="deploy_logs">日志</a>
-    <a class="navbar-brand  btn-outline-warning"  href="/polls/logouts">注销</a>
+        <a  href="/polls/logouts"> <img id="logout" src="{% static 'polls/images/logout.gif' %}" align="right" title="Log out!" alt="Logouts" /> </a>
 
     </div>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item ">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Features</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
-            </li>
+    <div class="w-100"></div>
+    <div class="col-1" style="background: #DDDDDD">
 
-        </ul>
-        <span class="navbar-text">
-        <a class="navbar-brand"  href="/polls/logouts">注销</a>
-    </span>
+        <button type="button" class="btn btn-info" id="bt_deploy_bk">后端部署</button> <br> <br>
+        <button type="button" class="btn btn-info" id="bt_deploy_ft">前端部署</button> <br> <br>
+        <button type="button" class="btn btn-info" id="deploy_logs">部署日志</button> <br>  <br>
+        <button type="button" class="btn btn-info" id="locked_user">账号解锁</button> <br>
+
     </div>
-</nav>
 
+    <div class="col" id="details">col</div>
+
+    <!--<div class="col" id="details2">col</div>-->
+    <!--<div class="col" id="details3">col</div>-->
+      <div class="w-100"></div>
+    <div class="col" id="test"><center>3-1</center></div>
+
+  </div>
 </div>
 
- <div class="row" id="details" >
-
-
-
-</div>
-
-</div>
 </center>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- <script src="/static/polls/js/2.1.4/jquery.min.js"></script>
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="/static/polls/js/2.1.4/jquery.min.js"></script>
 <script src="/static/polls/js/popper.min.js"></script>
 <script src="/static/polls/js/bootstrap.min.js" ></script>
 
@@ -99,7 +61,6 @@
 
 
   <script>
-
         $('#bt_deploy_bk').click(function () {
 //            $.get("/polls/deploy_backend/", function (response) {
 //                $('#details').html(response);

@@ -1,37 +1,10 @@
-<!DOCTYPE html>
-<p lang="en" xmlns="http://www.w3.org/1999/html">
-<head>
-    <title>Title</title>
-    <style type="text/css">
-        form.big
-            {
-                width: 20%
-
-            }
-    td div {
-             width:150px;
-    }
-    </style>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-   <link rel="stylesheet" href="/static/polls/js/bootstrap.min.css">
-
-</head>
 
 
-<body>
-
-  <div align="center"> 前端更新
-
-   <br>
 
 
 <form  class="big"  method="post" id="frontForm" >
  {% csrf_token %}
-
+<div align="center">
     同步方向
 
       <select name="source_target">
@@ -43,7 +16,10 @@
         <option value="uat.chinayie.com_www.chinayie.com"> UAT -> 生产 </option>
         <option value="uat1.chinayie.com_www.chinayie.com"> UAT1 -> 生产 </option>
     </select>
-    <br><br>
+    <br>
+
+    </div>
+    <div id="folders1"  align="center">
          <div id="folders" >
 
         <table border="1" class="table table-striped table-hover table-bordered">
@@ -66,17 +42,13 @@
             {% endfor %}
         </table>
     </div>
-    <button type="submit" class="btn btn-success" value="Deploy" >开始部署</button>
 
+   <div style="width: 100px">  <button type="submit" class="btn btn-outline-primary" value="Deploy" >部署前端</button> </div>
+     </div>
 </form>
 
 
 
- </div>
-
-<script src="/static/polls/js/2.1.4/jquery.min.js"></script>
-<script src="/static/polls/js/popper.min.js"></script>
-<script src="/static/polls/js/bootstrap.min.js" ></script>
 
 
 <script>
@@ -99,7 +71,3 @@
 
     </script>
 
-</body>
-
-
-</html>

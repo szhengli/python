@@ -16,7 +16,7 @@ from django.conf import settings
 from django.shortcuts import redirect
 from .forms import NameForm,  Profiles
 from multiprocessing import Pool, Process
-
+import jenkins
 from django.views import View
 from django.views.generic import ListView, DetailView
 from subprocess import run, getoutput
@@ -81,6 +81,7 @@ def deploy_jar(source, target, mold):
 
 
 
+
 @csrf_exempt
 def test_js(request):
     if request.method == 'GET':
@@ -89,6 +90,55 @@ def test_js(request):
         username = request.POST['username']
         password = request.POST['password']
         return HttpResponse(username+"  "+password )
+
+
+
+jen=jenkins.Jenkins('http://192.168.10.36',username='zhengli',password="Kingsun1234")
+
+@never_cache
+def jenkins(request):
+    if request.user.is_authenticated:
+        operator = request.user.username
+        jobs_list = jen.get_jobs(view_name="测试132")
+
+        if request.method == 'GET':
+            jobs=[job['name']  for job in jobs_list]
+            return render(request,'polls/jenkins.html', {'jobs':jobs})
+    else:
+        request.session['previous'] = request.path
+        return HttpResponseRedirect(reverse('polls:login'))
+@never_cache
+def jobs(request, job):
+    if request.user.is_authenticated:
+        operator = request.user.username
+
+        if request.method == 'GET':
+            build_number=jen.get_job_info(job)['nextBuildNumber']
+            jen.build_job(job)
+           # jen.get_build_info(job,build_number)
+
+            return HttpResponse(build_number)
+    else:
+        request.session['previous'] = request.path
+        return HttpResponseRedirect(reverse('polls:login'))
+
+@never_cache
+def job_check(request, job_id,build_number):
+    if request.user.is_authenticated:
+        operator = request.user.username
+        if request.method == 'GET':
+            try:
+                result=jen.get_build_info(job_id,build_number)['result']
+            except Exception:
+                result="Empty"
+
+            return HttpResponse(result)
+    else:
+        request.session['previous'] = request.path
+        return HttpResponseRedirect(reverse('polls:login'))
+
+
+
 
 @never_cache
 def check_prog(request):

@@ -1,0 +1,82 @@
+
+
+
+<div style="padding: 10px">
+{% load static %}
+ {% csrf_token %}
+
+    <ul style="list-style-type: none;
+    margin: 0;
+    padding: 0;">
+
+         {% for job in jobs %}
+
+          <li> <img src="{% static 'polls/images/blue.png' %}" id="img_{{ job }}">
+
+              <a class=" navbar-brand  btn-outline-warning"  onclick='build(this)' > {{ job }}
+              </a> <label id="{{ job }}"> </label></li>
+
+         {% endfor %}
+
+    </ul>
+
+</div>
+
+<script>
+
+
+    var flag;
+    var job_id;
+    var build_number;
+
+
+
+    function sleep(delay) {
+        var start = (new Date()).getTime();
+        while ((new Date()).getTime() - start < delay) {
+        continue;
+        }
+    }
+        function build(job) {
+            job_id=job.innerText;
+            lid='#' + job_id;
+            build_number='xx';
+            $.ajax({
+              type: "get",      //data 传送数据类型。post 传递
+              url: "/polls/jobs/"+job_id,  // yii 控制器/方法
+              cache: false,
+                success: function (response) {
+                    build_number=response;
+                    $(lid).html(build_number);
+                    sleep(2000);
+                    flag = window.setInterval(function () {
+                            job_check(job_id,build_number,lid);
+                            },2000);
+              }});
+        }
+
+
+    function job_check(job_id,build_number,lid) {
+        $.ajax({
+            type: "get",
+            url: "/polls/job_check/" + job_id + "/" + build_number,
+            cache: false,
+            success: function (response) {
+                if (response == "SUCCESS") {
+                             $(lid).html(build_number+ "<span style='background-color: green'>  部署成功!  </span>" );
+                             clearInterval(flag);
+                            }
+                else if (response == "FAILURE") {
+                             $(lid).html(build_number+"<span style='background-color: red'> 部署失败！</span>" );
+                             clearInterval(flag);
+                             }
+                else {
+                     $(lid).html(build_number+"<span style='background-color:#7abaff' > 部署进行中！</span>" );
+                }
+                      }
+        });
+    }
+
+
+
+</script>

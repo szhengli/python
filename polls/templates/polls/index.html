@@ -14,10 +14,10 @@
           <style type="text/css">
         form.big
             {
-                width: 30%
+                width: 40%
             }
-    td div {
-             width:150px;
+        td div {
+             width:160px;
     }
     </style>
   </head>
@@ -33,7 +33,8 @@
     <a class="navbar-brand  btn-outline-danger"  href="#" id="bt_deploy_bk">后端</a>
     <a class="navbar-brand  btn-outline-primary" href="#" id="bt_deploy_ft" >前端</a>
     <a class="navbar-brand  btn-outline-success" href="#" id="deploy_logs">日志</a>
-    <a class="navbar-brand  btn-outline-warning"  href="/polls/logouts">注销</a>
+    <a class="navbar-brand  btn-outline-warning" href="#" id="jenkins">Jenkins</a>
+
 
     </div>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,21 +43,23 @@
     <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item ">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+             <div style="width: 100px">     <a class="nav-link btn-outline-info"   href="#">数据库更新 <span class="sr-only">(current)</span></a> </div>
             </li>
+
             <li class="nav-item">
-                <a class="nav-link" href="#">Features</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
+             <div style="width: 100px">     <a class="nav-link btn-outline-info" href="#">环境监控</a> </div>
             </li>
 
         </ul>
         <span class="navbar-text">
-        <a class="navbar-brand"  href="/polls/logouts">注销</a>
+            <div style="width: 100px">
+        <a class="navbar-brand btn-outline-info"  href="/polls/logouts">注销</a> </div>
     </span>
     </div>
 </nav>
+
+
+
 
 </div>
 
@@ -98,6 +101,20 @@
               }
             })
         });
+
+
+
+        $('#jenkins').click(function () {
+            $.ajax({
+              type: "get",      //data 传送数据类型。post 传递
+              url: "/polls/jenkins/",  // yii 控制器/方法
+              cache: false,
+                success: function (response) {
+                $('#details').html(response);
+              }
+            })
+        });
+
 
         $('#bt_deploy_ft').click(function () {
 //            $.get("/polls/deploy_frontend/", function (response) {

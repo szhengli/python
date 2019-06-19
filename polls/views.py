@@ -107,16 +107,14 @@ def jenkins(request):
     else:
         request.session['previous'] = request.path
         return HttpResponseRedirect(reverse('polls:login'))
+    
 @never_cache
 def jobs(request, job):
     if request.user.is_authenticated:
         operator = request.user.username
-
         if request.method == 'GET':
             build_number=jen.get_job_info(job)['nextBuildNumber']
             jen.build_job(job)
-           # jen.get_build_info(job,build_number)
-
             return HttpResponse(build_number)
     else:
         request.session['previous'] = request.path
@@ -131,7 +129,6 @@ def job_check(request, job_id,build_number):
                 result=jen.get_build_info(job_id,build_number)['result']
             except Exception:
                 result="Empty"
-
             return HttpResponse(result)
     else:
         request.session['previous'] = request.path

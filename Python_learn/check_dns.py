@@ -21,7 +21,7 @@ def get_good_ip(host):
     ip_from_hosts = get_ip_from_hosts(host)
     resolver = reso.Resolver()
     resolver.timeout=1
-    resolver.nameservers = ["223.5.5..5","114.114.114.114"]
+    resolver.nameservers = ["223.5.5.5","114.114.114.114"]
     try:
         res = resolver.query(host, "A")
         ips = [rc.address for rc in res.rrset.items]
